@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "name": "Submit Final Documentation",
+    "description": "Prepare and submit the final documentation, ensuring all required sections and visuals are included.",
+    "dueDate": "12-09-2024",
+    "priority": "Medium",
+    "status": "Completed"
+  },
+  {
+    "id": 2,
+    "name": "Conduct Sprint Planning Meeting",
+    "description": "Organize a sprint planning meeting with the team to discuss goals and assign tasks for the upcoming sprint.",
+    "dueDate": "15-09-2027",
+    "priority": "High",
+    "status": "In Progress"
+  },
+  {
+    "id": 3,
+    "name": "Perform Quality Assurance",
+    "description": "Carry out quality assurance checks on the latest codebase and resolve any identified issues.",
+    "dueDate": "17-09-2024",
+    "priority": "Medium",
+    "status": "Completed"
+  },
+  {
+    "id": 4,
+    "name": "Prepare Client Demo",
+    "description": "Create a demo presentation for the client, highlighting key features and project progress.",
+    "dueDate": "18-09-2024",
+    "priority": "Low",
+    "status": "Completed"
+  },
+  {
+    "id": 5,
+    "name": "Improve Database Performance",
+    "description": "Review and enhance database performance by optimizing queries and indexing tables.",
+    "dueDate": "20-09-2024",
+    "priority": "Low",
+    "status": "Completed"
+  },
+  {
+    "id": 6,
+    "name": "Gather UI/UX Feedback",
+    "description": "Collect feedback from users and designers regarding the latest UI/UX changes and usability.",
+    "dueDate": "25-10-2024",
+    "priority": "High",
+    "status": "Completed"
+  },
+  {
+    "id": 7,
+    "name": "Integrate Payment API",
+    "description": "Connect and test the payment API to ensure secure and reliable transaction processing.",
+    "dueDate": "27-09-2024",
+    "priority": "High",
+    "status": "In Progress"
+  }
+]
