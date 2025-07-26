@@ -84,9 +84,8 @@
 
 .headerRow {
   display: flex;
-  margin-bottom: 0.75rem;
-  align-items: center;
-  justify-content: flex-start;
+  margin-bottom: 0.5rem;
+  align-items: flex-start;
 }
 
 .headerRow:last-child {
@@ -94,11 +93,11 @@
 }
 
 .headerLabel {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: #941b0f;
-  min-width: 100px;
-  margin-right: 2rem;
+  min-width: 80px;
+  margin-right: 1rem;
   flex-shrink: 0;
 }
 
@@ -161,8 +160,7 @@
 .detailRow {
   display: flex;
   margin-bottom: 0.75rem;
-  align-items: center;
-  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .detailRow:last-child {
@@ -171,11 +169,11 @@
 }
 
 .label {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: #941b0f;
-  min-width: 100px;
-  margin-right: 2rem;
+  min-width: 80px;
+  margin-right: 1rem;
   flex-shrink: 0;
 }
 
@@ -279,12 +277,6 @@
   .taskCard {
     border: 1px solid #e0e0e0;
   }
-  
-  .headerLabel,
-  .label {
-    min-width: 100px;
-    margin-right: 2rem;
-  }
 }
 
 @media (max-width: 480px) {
@@ -309,9 +301,8 @@
   
   .headerLabel,
   .label {
-    min-width: 85px;
-    font-size: 0.8rem;
-    margin-right: 1.5rem;
+    min-width: 70px;
+    font-size: 0.7rem;
   }
   
   .headerValue,
