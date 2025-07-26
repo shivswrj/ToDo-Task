@@ -11,71 +11,75 @@ interface TaskTableProps {
 
 const TaskTable: React.FC<TaskTableProps> = ({ tasks = [] }) => {
   const { editTask, deleteTask } = useTaskContext();
-
-  // State to handle which rows are collapsed/expanded
   const [expandedRow, setExpandedRow] = useState<number | null>(null);
 
-  // Toggle row expansion
   const toggleRow = (index: number) => {
     setExpandedRow(expandedRow === index ? null : index);
   };
 
   return (
-    <div className={styles.taskTableContainer}>
-      <table className={styles.taskTable}>
-        <thead>
-          <tr>
-            <th>SL.No</th>
-            <th>Title</th>
-          </tr>
-        </thead>
-        <tbody>
-          {tasks.map((task, index) => (
-            <React.Fragment key={task.id}>
-              <tr onClick={() => toggleRow(index)} className={styles.taskRow}>
-                <td>{index + 1}</td>
-                <td>{task.name}</td>
-              </tr>
-              {expandedRow === index && (
-                <tr>
-                  <td colSpan={2}>
-                    <div className={styles.expandedRowContent}>
-                      <p>
-                        <strong>Description:</strong> {task.description}
-                      </p>
-                      <p>
-                        <strong>Due Date:</strong> {task.dueDate}
-                      </p>
-                      <p>
-                        <strong>Status:</strong>
-                        <span
-                          className={`${styles.status} ${
-                            styles[task.status.toLowerCase().replace(" ", "-")]
-                          }`}
-                        >
-                          {task.status}
-                        </span>
-                      </p>
-                      <div className={styles.priorityContainer}>
-                        <strong>Priority: </strong>
-                        <DropDown
-                          onChange={(priority) =>
-                            editTask(task.id, { ...task, priority })
-                          }
-                          initialPriority={task.priority}
-                        />
-                      </div>
-                      <div className={styles.actionsContainer}>
-                        <ActionButton task={task} />
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-              )}
-            </React.Fragment>
-          ))}
-        </tbody>
-      </table>
+    <div className={styles.mobileContainer}>
+      {tasks.map((task, index) => (
+        <div
+          key={task.id}
+          className={`${styles.taskCard} ${
+            expandedRow === index ? styles.expanded : ""
+          }`}
+        >
+          <div
+            className={styles.taskHeader}
+            onClick={() => toggleRow(index)}
+            role="button"
+            tabIndex={0}
+          >
+            <div>
+              <span className={styles.label}>SL.No</span>
+              <span className={styles.value}>{index + 1}</span>
+            </div>
+            <div>
+              <span className={styles.label}>Title</span>
+              <span className={styles.value}>{task.name}</span>
+            </div>
+            <button className={styles.expandBtn} aria-label="Expand">
+              {expandedRow === index ? "▲" : "▼"}
+            </button>
+          </div>
+          {expandedRow === index && (
+            <div className={styles.taskDetails}>
+              <div>
+                <span className={styles.label}>Description</span>
+                <span className={styles.value}>{task.description}</span>
+              </div>
+              <div>
+                <span className={styles.label}>Due Date</span>
+                <span className={styles.value}>{task.dueDate}</span>
+              </div>
+              <div>
+                <span className={styles.label}>Status</span>
+                <span
+                  className={`${styles.status} ${
+                    styles[task.status.toLowerCase().replace(" ", "-")]
+                  }`}
+                >
+                  {task.status}
+                </span>
+              </div>
+              <div className={styles.priorityRow}>
+                <span className={styles.label}>Priority</span>
+                <DropDown
+                  onChange={(priority) =>
+                    editTask(task.id, { ...task, priority })
+                  }
+                  initialPriority={task.priority}
+                />
+                <span className={styles.actionIcon}>
+                  <ActionButton task={task} />
+                </span>
+              </div>
+            </div>
+          )}
+        </div>
+      ))}
     </div>
   );
 };
