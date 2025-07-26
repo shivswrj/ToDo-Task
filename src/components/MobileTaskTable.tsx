@@ -10,7 +10,7 @@ interface TaskTableProps {
 }
 
 const TaskTable: React.FC<TaskTableProps> = ({ tasks = [] }) => {
-  const { editTask, deleteTask } = useTaskContext();
+  const { editTask } = useTaskContext();
   const [expandedRow, setExpandedRow] = useState<number | null>(null);
 
   const toggleRow = (index: number) => {
@@ -32,13 +32,13 @@ const TaskTable: React.FC<TaskTableProps> = ({ tasks = [] }) => {
             role="button"
             tabIndex={0}
           >
-            <div>
-              <span className={styles.label}>SL.No</span>
-              <span className={styles.value}>{index + 1}</span>
+            <div className={styles.headerCell}>
+              <span className={styles.headerLabel}>SL.No</span>
+              <span className={styles.headerValue}>{index + 1}</span>
             </div>
-            <div>
-              <span className={styles.label}>Title</span>
-              <span className={styles.value}>{task.name}</span>
+            <div className={styles.headerCell}>
+              <span className={styles.headerLabel}>Title</span>
+              <span className={styles.headerValue}>{task.name}</span>
             </div>
             <button className={styles.expandBtn} aria-label="Expand">
               {expandedRow === index ? "▲" : "▼"}
@@ -46,15 +46,15 @@ const TaskTable: React.FC<TaskTableProps> = ({ tasks = [] }) => {
           </div>
           {expandedRow === index && (
             <div className={styles.taskDetails}>
-              <div>
+              <div className={styles.detailRow}>
                 <span className={styles.label}>Description</span>
                 <span className={styles.value}>{task.description}</span>
               </div>
-              <div>
+              <div className={styles.detailRow}>
                 <span className={styles.label}>Due Date</span>
                 <span className={styles.value}>{task.dueDate}</span>
               </div>
-              <div>
+              <div className={styles.detailRow}>
                 <span className={styles.label}>Status</span>
                 <span
                   className={`${styles.status} ${
@@ -64,7 +64,7 @@ const TaskTable: React.FC<TaskTableProps> = ({ tasks = [] }) => {
                   {task.status}
                 </span>
               </div>
-              <div className={styles.priorityRow}>
+              <div className={styles.detailRow}>
                 <span className={styles.label}>Priority</span>
                 <DropDown
                   onChange={(priority) =>
