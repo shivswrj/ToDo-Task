@@ -99,13 +99,15 @@ const TaskTable: React.FC<TaskTableProps> = ({ tasks = [] }) => {
               }
             }}
           >
-            <div className={styles.headerCell}>
-              <span className={styles.headerLabel}>SL.No</span>
-              <span className={styles.headerValue}>{index + 1}</span>
-            </div>
-            <div className={styles.headerCell}>
-              <span className={styles.headerLabel}>Title</span>
-              <span className={styles.headerValue}>{task.name}</span>
+            <div className={styles.headerContent}>
+              <div className={styles.headerRow}>
+                <span className={styles.headerLabel}>SL.No</span>
+                <span className={styles.headerValue}>{index + 1}</span>
+              </div>
+              <div className={styles.headerRow}>
+                <span className={styles.headerLabel}>Title</span>
+                <span className={styles.headerValue}>{task.name}</span>
+              </div>
             </div>
             <button 
               className={styles.expandBtn} 
@@ -144,16 +146,18 @@ const TaskTable: React.FC<TaskTableProps> = ({ tasks = [] }) => {
 
               <div className={styles.detailRow}>
                 <span className={styles.label}>Priority</span>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flex: 1, justifyContent: 'space-between' }}>
-                  <DropDown
-                    onChange={(priority) =>
-                      editTask(task.id, { ...task, priority })
-                    }
-                    initialPriority={task.priority}
-                  />
-                  <span className={styles.actionIcon}>
+                <div className={styles.priorityActionsRow}>
+                  <div className={styles.prioritySection}>
+                    <DropDown
+                      onChange={(priority) =>
+                        editTask(task.id, { ...task, priority })
+                      }
+                      initialPriority={task.priority}
+                    />
+                  </div>
+                  <div className={styles.actionSection}>
                     <ActionButton task={task} />
-                  </span>
+                  </div>
                 </div>
               </div>
             </div>
