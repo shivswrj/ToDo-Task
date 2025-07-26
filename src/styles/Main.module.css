@@ -1,31 +1,312 @@
-.TaskTableContainer {
-  margin-top: 50px;
+/* Container for the task table */
+.taskTableContainer {
+  width: 100%;
+  padding: 1rem;
+  background-color: #f9f9f9;
 }
 
-.headerContainer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
+/* Desktop table styles - hidden by default, shown only on desktop */
+.taskTable {
+  display: none;
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-.FormContainer {
+
+.taskTable th {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #941b0f;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.taskTable td {
+  padding: 1rem;
+  border-bottom: 1px solid #dee2e6;
+  vertical-align: middle;
+}
+
+.taskRow {
+  transition: background-color 0.2s ease;
+}
+
+.taskRow:hover {
+  background-color: #f8f9fa;
+}
+
+/* Mobile container - shown by default */
+.mobileContainer {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 1rem;
 }
-.ButtonContainer {
+
+/* Mobile task card styles */
+.taskCard {
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.taskCard.expanded {
+  border-color: #941b0f;
+  box-shadow: 0 4px 8px rgba(148, 27, 15, 0.1);
+}
+
+/* Task header (always visible part) */
+.taskHeader {
   display: flex;
-  gap: 10px;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0;
+  cursor: pointer;
+  background-color: white;
+  transition: background-color 0.2s ease;
 }
 
-.Title {
-  text-align: start;
-  flex-grow: 1; /* Allows Title to take all available free space */
+.taskHeader:hover {
+  background-color: #f8f9fa;
 }
 
-.notFound {
-  margin-top: 20px;
-  text-align: center;
-  font-size: 30px;
+.headerContent {
+  flex: 1;
+  padding: 1rem;
+}
+
+.headerRow {
+  display: flex;
+  margin-bottom: 0.5rem;
+  align-items: flex-start;
+}
+
+.headerRow:last-child {
+  margin-bottom: 0;
+}
+
+.headerLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
   color: #941b0f;
+  min-width: 80px;
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+.headerValue {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #333;
+  flex: 1;
+  word-break: break-word;
+  line-height: 1.4;
+}
+
+/* Expand button */
+.expandBtn {
+  background-color: #941b0f;
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  margin: 1rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  min-width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  align-self: flex-start;
+}
+
+.expandBtn:hover {
+  background-color: #7a160c;
+  transform: scale(1.05);
+}
+
+/* Task details (expandable content) */
+.taskDetails {
+  padding: 0 1rem 1rem 1rem;
+  border-top: 1px solid #f0f0f0;
+  background-color: #fffdf9;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 500px;
+    padding-top: 0;
+    padding-bottom: 1rem;
+  }
+}
+
+.detailRow {
+  display: flex;
+  margin-bottom: 0.75rem;
+  align-items: flex-start;
+}
+
+.detailRow:last-child {
+  margin-bottom: 0;
+  align-items: center;
+}
+
+.label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #941b0f;
+  min-width: 80px;
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+.value {
+  font-size: 0.9rem;
+  color: #333;
+  flex: 1;
+  word-break: break-word;
+  line-height: 1.4;
+}
+
+/* Status badge styling */
+.status {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status.completed {
+  background-color: #28a745;
+  color: white;
+}
+
+.status.in-progress {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.status.cancelled {
+  background-color: #dc3545;
+  color: white;
+}
+
+.status.pending {
+  background-color: #6c757d;
+  color: white;
+}
+
+/* Priority and actions row */
+.priorityActionsRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.prioritySection {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.actionSection {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: 1rem;
+}
+
+/* Priority dropdown styling */
+.detailRow select {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  background-color: white;
+  cursor: pointer;
+}
+
+/* Desktop styles */
+@media (min-width: 769px) {
+  .taskTableContainer {
+    padding: 0.5rem;
+  }
+  
+  /* Show desktop table */
+  .taskTable {
+    display: table;
+  }
+  
+  /* Hide mobile container */
+  .mobileContainer {
+    display: none;
+  }
+}
+
+/* Mobile specific adjustments */
+@media (max-width: 768px) {
+  .taskTableContainer {
+    padding: 1rem;
+    background-color: #f9f9f9;
+  }
+  
+  .mobileContainer {
+    gap: 1rem;
+  }
+  
+  .taskCard {
+    border: 1px solid #e0e0e0;
+  }
+}
+
+@media (max-width: 480px) {
+  .taskTableContainer {
+    padding: 0.5rem;
+  }
+  
+  .headerContent {
+    padding: 0.75rem;
+  }
+  
+  .expandBtn {
+    margin: 0.75rem;
+    min-width: 28px;
+    height: 28px;
+    font-size: 0.7rem;
+  }
+  
+  .taskDetails {
+    padding: 0 0.75rem 0.75rem 0.75rem;
+  }
+  
+  .headerLabel,
+  .label {
+    min-width: 70px;
+    font-size: 0.7rem;
+  }
+  
+  .headerValue,
+  .value {
+    font-size: 0.85rem;
+  }
 }
